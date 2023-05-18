@@ -1,12 +1,12 @@
-package com.nyanchain.ensor.ui.activity
+package com.chaehyun.project.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.nyanchain.ensor.ui.fragment.HomeFragment
-import com.nyanchain.ensor.ui.fragment.MyPageFragment
-import com.nyanchain.ensor.ui.fragment.QrFragment
-import com.nyanchain.ensor.R
-import com.nyanchain.ensor.databinding.ActivityMainBinding
+import com.chaehyun.project.R
+import com.chaehyun.project.databinding.ActivityMainBinding
+import com.chaehyun.project.ui.fragment.HomeFragment
+import com.chaehyun.project.ui.fragment.MyPageFragment
+import com.chaehyun.project.ui.fragment.QrFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

@@ -1,4 +1,4 @@
-package com.nyanchain.ensor.base
+package com.chaehyun.project.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

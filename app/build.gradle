@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.nyanchain.ensor'
+    namespace 'com.chaehyun.project'
     compileSdk 33
 
     defaultConfig {

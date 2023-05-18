@@ -1,11 +1,11 @@
-package com.nyanchain.ensor.ui.fragment
+package com.chaehyun.project.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nyanchain.ensor.base.BaseFragment
-import com.nyanchain.ensor.databinding.FragmentMyPageBinding
+import com.chaehyun.project.base.BaseFragment
+import com.chaehyun.project.databinding.FragmentMyPageBinding
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>()  {
 
