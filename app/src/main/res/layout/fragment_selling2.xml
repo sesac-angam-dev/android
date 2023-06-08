@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.fragment.Selling2Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="의류에 대한 정보를\n입력해주세요."
+            android:textColor="@color/black_title"
+            android:textSize="20sp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/info_1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/btn_info_1"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/info_2"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btn_info_2"
+            app:layout_constraintBottom_toBottomOf="@+id/info_1"
+            app:layout_constraintStart_toEndOf="@+id/info_1"
+            app:layout_constraintTop_toTopOf="@+id/info_1" />
+
+        <ImageView
+            android:id="@+id/info_3"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btn_info_3"
+            app:layout_constraintBottom_toBottomOf="@+id/info_2"
+            app:layout_constraintStart_toEndOf="@+id/info_2"
+            app:layout_constraintTop_toTopOf="@+id/info_2" />
+
+        <ImageView
+            android:id="@+id/info_4"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btn_info_4"
+            app:layout_constraintBottom_toBottomOf="@+id/info_3"
+            app:layout_constraintStart_toEndOf="@+id/info_3"
+            app:layout_constraintTop_toTopOf="@+id/info_3" />
+
+        <ImageView
+            android:id="@+id/info_5"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btn_info_4"
+            app:layout_constraintBottom_toBottomOf="@+id/info_4"
+            app:layout_constraintStart_toEndOf="@+id/info_4"
+            app:layout_constraintTop_toTopOf="@+id/info_4" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="350dp"
+            android:layout_height="282dp"
+            android:background="@drawable/bg_info_box"
+            android:layout_marginTop="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_1">
+
+            <ImageView
+                android:layout_width="274dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:src="@drawable/ic_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

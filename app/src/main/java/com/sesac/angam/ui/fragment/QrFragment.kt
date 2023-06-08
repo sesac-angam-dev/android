@@ -1,12 +1,11 @@
-package com.chaehyun.angam.ui.fragment
+package com.sesac.angam.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chaehyun.angam.base.BaseFragment
-import com.chaehyun.angam.databinding.FragmentQrBinding
-
+import com.sesac.angam.base.BaseFragment
+import com.sesac.angam.databinding.FragmentQrBinding
 
 class QrFragment : BaseFragment<FragmentQrBinding>()  {
 

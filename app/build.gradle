@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.chaehyun.project'
+    namespace 'com.sesac.angam'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.nyanchain.ensor"
+        applicationId "com.sesac.angam"
         minSdk 24
         targetSdk 33
         versionCode 1
