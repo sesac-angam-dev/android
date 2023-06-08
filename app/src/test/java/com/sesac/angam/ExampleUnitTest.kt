@@ -1,4 +1,4 @@
-package com.chaehyun.project
+package com.chaehyun.angam
 
 import org.junit.Test
 

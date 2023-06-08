@@ -1,19 +1,20 @@
-package com.chaehyun.project.ui.fragment
+package com.chaehyun.angam.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chaehyun.project.base.BaseFragment
-import com.chaehyun.project.databinding.FragmentMyPageBinding
+import com.chaehyun.angam.base.BaseFragment
+import com.chaehyun.angam.databinding.FragmentQrBinding
 
-class MyPageFragment : BaseFragment<FragmentMyPageBinding>()  {
+
+class QrFragment : BaseFragment<FragmentQrBinding>()  {
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMyPageBinding {
-        return FragmentMyPageBinding.inflate(inflater, container, false)
+    ): FragmentQrBinding {
+        return FragmentQrBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

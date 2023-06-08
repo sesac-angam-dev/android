@@ -1,12 +1,12 @@
-package com.chaehyun.project.ui.activity
+package com.chaehyun.angam.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.chaehyun.angam.ui.fragment.HomeFragment
+import com.chaehyun.angam.ui.fragment.MyPageFragment
+import com.chaehyun.angam.ui.fragment.QrFragment
 import com.chaehyun.project.R
 import com.chaehyun.project.databinding.ActivityMainBinding
-import com.chaehyun.project.ui.fragment.HomeFragment
-import com.chaehyun.project.ui.fragment.MyPageFragment
-import com.chaehyun.project.ui.fragment.QrFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

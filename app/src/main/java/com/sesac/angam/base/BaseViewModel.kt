@@ -1,4 +1,4 @@
-package com.chaehyun.project.base
+package com.chaehyun.angam.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.chaehyun.project.base
+package com.chaehyun.angam.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
