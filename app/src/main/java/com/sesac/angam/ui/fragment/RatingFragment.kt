@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sesac.angam.base.BaseFragment
-import com.sesac.angam.databinding.FragmentQrBinding
+import com.sesac.angam.databinding.FragmentRatingBinding
 
-class QrFragment : BaseFragment<FragmentQrBinding>()  {
+class RatingFragment : BaseFragment<FragmentRatingBinding>()  {
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentQrBinding {
-        return FragmentQrBinding.inflate(inflater, container, false)
+    ): FragmentRatingBinding {
+        return FragmentRatingBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

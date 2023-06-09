@@ -22,6 +22,12 @@ class Selling1Fragment : BaseFragment<FragmentSelling1Binding>()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnGoSelling2.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, Selling2Fragment())
+                .addToBackStack(null)
+                .commit()
+        }
 
     }
 
