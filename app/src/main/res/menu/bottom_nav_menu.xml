@@ -4,22 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/sellingFragment"
+        android:icon="@drawable/bottom_nav_selling"
+        app:showAsAction="always"
+        android:title=""
+        tools:ignore="AlwaysShowAction"/>
+
+    <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_bottom_home_no_select"
+        android:icon="@drawable/bottom_nav_home"
         app:showAsAction="always"
         android:enabled="true"
-        android:title="@string/bottom_home"
+        android:title=""
         tools:ignore="AlwaysShowAction"/>
+
     <item
-        android:id="@+id/qrFragment"
-        android:icon="@drawable/ic_bottom_qr_no_select"
+        android:id="@+id/ratingFragment"
+        android:icon="@drawable/bottom_nav_rating"
         app:showAsAction="always"
-        android:title="@string/bottom_home"
+        android:title=""
         tools:ignore="AlwaysShowAction"/>
+
     <item
         android:id="@+id/mypageFragment"
-        android:icon="@drawable/ic_bottom_mypage_no_select"
+        android:icon="@drawable/bottom_nav_mypage"
         app:showAsAction="always"
-        android:title="@string/bottom_my_page"
+        android:title=""
         tools:ignore="AlwaysShowAction"/>
 </menu>

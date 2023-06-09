@@ -10,6 +10,7 @@
         android:background="@drawable/bg_selling_intro">
 
         <ImageView
+            android:id="@+id/btn_go_selling2"
             android:layout_width="298dp"
             android:layout_height="45dp"
             android:src="@drawable/btn_go_selling"

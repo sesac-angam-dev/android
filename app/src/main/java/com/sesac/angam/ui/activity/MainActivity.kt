@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sesac.angam.R
 import com.sesac.angam.databinding.ActivityMainBinding
-import com.sesac.angam.ui.fragment.HomeFragment
-import com.sesac.angam.ui.fragment.MyPageFragment
-import com.sesac.angam.ui.fragment.QrFragment
+import com.sesac.angam.ui.fragment.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -17,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.mainBnv.itemIconTintList = null
         initBottomNavigation()
 
     }
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frm, QrFragment())
+            .replace(R.id.main_frm, RatingFragment())
             .commitAllowingStateLoss()
 
         binding.mainBnv.setOnItemSelectedListener{ item ->
@@ -36,9 +35,16 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.qrFragment -> {
+                R.id.sellingFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, QrFragment())
+                        .replace(R.id.main_frm, Selling2Fragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.ratingFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, RatingFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
