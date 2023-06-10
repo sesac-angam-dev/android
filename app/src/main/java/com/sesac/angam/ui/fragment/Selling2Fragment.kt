@@ -28,6 +28,7 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
     private var info3 = "false"
     private var info4 = "false"
     private var info5 = "false"
+    private var goSelling = "false"
 
     private val prefsListener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
         when (key) {
@@ -78,11 +79,14 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
         // info2 fragment
         info2LiveData.observe(viewLifecycleOwner) { info2Value ->
             if (info2Value) {
+                goSelling = "true"
+                binding.btnGoSelling3.setImageResource(R.drawable.btn_go_selling)
                 binding.info2.setOnClickListener {
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.info_fragment, Info2Fragment())
                         .addToBackStack(null)
                         .commit()
+                    binding.info2.setImageResource(R.drawable.ic_info2_on)
                 }
             } else {
                 // info2가 false일 때의 처리
@@ -98,6 +102,7 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
                         .replace(R.id.info_fragment, Info3Fragment())
                         .addToBackStack(null)
                         .commit()
+                    binding.info3.setImageResource(R.drawable.ic_info3_on)
                 }
             } else {
                 // info3가 false일 때의 처리
@@ -113,6 +118,7 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
                         .replace(R.id.info_fragment, Info4Fragment())
                         .addToBackStack(null)
                         .commit()
+                    binding.info4.setImageResource(R.drawable.ic_info4_on)
                 }
             } else {
                 // info4가 false일 때의 처리
@@ -128,10 +134,20 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
                         .replace(R.id.info_fragment, Info5Fragment())
                         .addToBackStack(null)
                         .commit()
+                    binding.info5.setImageResource(R.drawable.ic_info5_on)
                 }
             } else {
                 // info5가 false일 때의 처리
                 // 버튼 클릭 이벤트 해제 또는 다른 처리 수행
+            }
+        }
+
+        if(goSelling == "true") {
+            binding.btnGoSelling3.setOnClickListener {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_frm, Selling3Fragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }

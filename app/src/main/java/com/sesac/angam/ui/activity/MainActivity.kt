@@ -18,6 +18,20 @@ class MainActivity : AppCompatActivity() {
         GlobalApplication.prefs.setString("info5", "false")
         GlobalApplication.prefs.setString("userAccessToken", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZW5ueTAxMDkyNUBuYXZlci5jb20iLCJhdXRoIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjg2MTQ1NDE4LCJleHAiOjE2ODk3NDU0MTh9.xLSxBb8B9e0AgjkkLD5ciE4wxnVIUgqRnKbBbg3Ey0SE9tap7LrGR_xbaFZW2xyUyMQ7JYtDrNjk0pQsIcdvwQ")
 
+        //값 초기화
+        GlobalApplication.prefs.setString("name1", "")
+        GlobalApplication.prefs.setString("imageFile1", "")
+        GlobalApplication.prefs.setString("brand1", "")
+        GlobalApplication.prefs.setString("size1", "")
+        GlobalApplication.prefs.setString("price1", "")
+        GlobalApplication.prefs.setString("count1", "")
+        GlobalApplication.prefs.setString("keyword1_1", "")
+        GlobalApplication.prefs.setString("keyword1_2", "")
+        GlobalApplication.prefs.setString("keyword1_3", "")
+        GlobalApplication.prefs.setString("history1", "")
+
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
