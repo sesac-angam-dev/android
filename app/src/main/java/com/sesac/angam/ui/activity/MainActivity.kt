@@ -2,6 +2,7 @@ package com.sesac.angam.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.databinding.ActivityMainBinding
 import com.sesac.angam.ui.fragment.*
@@ -11,6 +12,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        GlobalApplication.prefs.setString("info2", "false")
+        GlobalApplication.prefs.setString("info3", "false")
+        GlobalApplication.prefs.setString("info4", "false")
+        GlobalApplication.prefs.setString("info5", "false")
+        GlobalApplication.prefs.setString("userAccessToken", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZW5ueTAxMDkyNUBuYXZlci5jb20iLCJhdXRoIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjg2MTQ1NDE4LCJleHAiOjE2ODk3NDU0MTh9.xLSxBb8B9e0AgjkkLD5ciE4wxnVIUgqRnKbBbg3Ey0SE9tap7LrGR_xbaFZW2xyUyMQ7JYtDrNjk0pQsIcdvwQ")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

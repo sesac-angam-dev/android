@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.Info1Fragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/bg_info_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="274dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:src="@drawable/ic_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_name"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_item_box"
+                android:fontFamily="@font/pretendard_regular"
+                android:hint="예) 린넨 셔츠(반팔)"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/blue_text"
+                android:textColorHint="#B7B5B5"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="154dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="33dp"
+                android:src="@drawable/ic_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <ImageView
+                android:id="@+id/btn_photo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="36dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/bg_info_box"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/ic_brand"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_brand"
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="36dp"
+                android:background="@drawable/bg_item_box"
+                android:fontFamily="@font/pretendard_regular"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/blue_text"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/ic_size"
+                app:layout_constraintStart_toEndOf="@+id/tv_brand"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/size_spinner"
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="18dp"
+                android:textColor="@color/blue_text"
+                android:background="@drawable/bg_item_box"
+                app:layout_constraintStart_toEndOf="@+id/tv_brand"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_price"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="27dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_brand" />
+
+            <EditText
+                android:id="@+id/tv_price"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_item_box"
+                android:fontFamily="@font/pretendard_regular"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/blue_text"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="69dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="27dp"
+                android:src="@drawable/ic_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+            <Spinner
+                android:id="@+id/count_spinner"
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_item_box"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/bg_box3"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="231dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/ic_keyword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_keyword"
+                android:layout_width="223dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_item_box"
+                android:fontFamily="@font/pretendard_regular"
+                android:hint="예) 린넨 셔츠(반팔)"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/blue_text"
+                android:textColorHint="#B7B5B5"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/imageView7"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+            <ImageView
+                android:id="@+id/add_keyword"
+                android:layout_width="47dp"
+                android:layout_height="40dp"
+                android:src="@drawable/btn_keyword_add"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_keyword"
+                app:layout_constraintStart_toEndOf="@+id/tv_keyword"
+                app:layout_constraintTop_toTopOf="@+id/tv_keyword" />
+
+            <TextView
+                android:id="@+id/keyword1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_category_radius"
+                android:text="            "
+                android:fontFamily="@font/pretendard_regular"
+                android:textColor="@color/blue_main"
+                android:textSize="11sp"
+                android:layout_marginTop="7dp"
+                android:paddingStart="11dp"
+                android:paddingEnd="11dp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_keyword"
+                app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+
+            <TextView
+                android:id="@+id/keyword2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_category_radius"
+                android:fontFamily="@font/pretendard_regular"
+                android:paddingStart="11dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="11dp"
+                android:paddingBottom="4dp"
+                android:text="            "
+                android:textColor="@color/blue_main"
+                android:textSize="11sp"
+                android:layout_marginStart="9dp"
+                app:layout_constraintStart_toBottomOf="@+id/keyword1"
+                app:layout_constraintStart_toEndOf="@+id/keyword1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+
+            <TextView
+                android:id="@+id/keyword3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_category_radius"
+                android:fontFamily="@font/pretendard_regular"
+                android:paddingStart="11dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="11dp"
+                android:paddingBottom="4dp"
+                android:text="            "
+                android:textColor="@color/blue_main"
+                android:textSize="11sp"
+                android:layout_marginStart="9dp"
+                app:layout_constraintStart_toBottomOf="@+id/keyword2"
+                app:layout_constraintStart_toEndOf="@+id/keyword2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="273dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="180dp"
+                android:src="@drawable/ic_history"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_history"
+                android:layout_width="285dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_item_box"
+                android:fontFamily="@font/pretendard_regular"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:maxLines="4"
+                android:padding="10dp"
+                android:textColor="@color/black_text"
+                android:textSize="11sp"
+                android:hint="예) 제가 취업 준비할 때, 아버지가 사주셨던 정장입니다. 어느덧 카카오 개발자 1년차가 되었네요. 좋은 기운 받아가셨으면 좋겠습니다. 상태는 매우 좋아요 ㅎㅎ."
+                android:gravity="top"
+                android:textColorHint="#B7B5B5"
+                app:layout_constraintStart_toStartOf="@+id/imageView8"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최대 200자"
+                android:textColor="#B7B5B5"
+                android:textSize="12sp"
+                android:fontFamily="@font/pretendard_regular"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_history"
+                app:layout_constraintEnd_toEndOf="@+id/tv_history"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
