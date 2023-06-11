@@ -21,6 +21,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.net.toUri
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
@@ -47,9 +48,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     var size1 = GlobalApplication.prefs.getString("size1", "")
     var price1 = GlobalApplication.prefs.getString("price1", "")
     var count1 = GlobalApplication.prefs.getString("count1", "")
-    var keyword1 = GlobalApplication.prefs.getString("keyword1_1", "")
-    var keyword2 = GlobalApplication.prefs.getString("keyword1_2", "")
-    var keyword3 = GlobalApplication.prefs.getString("keyword1_3", "")
+    var keyword1 = GlobalApplication.prefs.getString("keyword11", "")
+    var keyword2 = GlobalApplication.prefs.getString("keyword12", "")
+    var keyword3 = GlobalApplication.prefs.getString("keyword13", "")
     var history1 = GlobalApplication.prefs.getString("history1", "")
 
 
@@ -62,6 +63,11 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.setOnTouchListener { v, event ->
+            hideKeyboard(v)
+            false
+        }
 
         binding.keyword1.visibility = View.INVISIBLE
         binding.keyword2.visibility = View.INVISIBLE
@@ -157,19 +163,19 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
                 binding.keyword1.visibility = View.VISIBLE
                 var tvKeyword = binding.tvKeyword.text.toString()
                 binding.keyword1.text = tvKeyword
-                GlobalApplication.prefs.setString("keyword1_1", tvKeyword)
+                GlobalApplication.prefs.setString("keyword11", tvKeyword)
                 keywordNum++
                 binding.tvKeyword.text = null
             } else if (keywordNum == 2) {
                 binding.keyword2.visibility = View.VISIBLE
                 binding.keyword2.text = binding.tvKeyword.text.toString()
-                GlobalApplication.prefs.setString("keyword1_2", binding.tvKeyword.text.toString())
+                GlobalApplication.prefs.setString("keyword12", binding.tvKeyword.text.toString())
                 keywordNum++
                 binding.tvKeyword.text = null
             } else if (keywordNum == 3) {
                 binding.keyword3.visibility = View.VISIBLE
                 binding.keyword3.text = binding.tvKeyword.text.toString()
-                GlobalApplication.prefs.setString("keyword1_3", binding.tvKeyword.text.toString())
+                GlobalApplication.prefs.setString("keyword13", binding.tvKeyword.text.toString())
                 keywordNum++
                 binding.tvKeyword.text = null
             } else {
@@ -284,6 +290,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     private fun checkAndSetPreferences() {
         if (true1 && true2 && true3) {
             GlobalApplication.prefs.setString("info2", "true")
+            GlobalApplication.prefs.setString("infoStatus", "1")
         } else {
             GlobalApplication.prefs.setString("info2", "false")
         }
