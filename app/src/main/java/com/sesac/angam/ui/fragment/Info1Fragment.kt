@@ -19,6 +19,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.net.toUri
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
@@ -36,6 +39,20 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     var true1 = false
     var true2 = false
     var true3 = false
+    var keywordNum = 1
+
+    //임시저장 data가져오기
+    var name1 = GlobalApplication.prefs.getString("name1", "")
+    var imageFile1 = GlobalApplication.prefs.getString("imageFile1", "")
+    var brand1 = GlobalApplication.prefs.getString("brand1", "")
+    var size1 = GlobalApplication.prefs.getString("size1", "")
+    var price1 = GlobalApplication.prefs.getString("price1", "")
+    var count1 = GlobalApplication.prefs.getString("count1", "")
+    var keyword1 = GlobalApplication.prefs.getString("keyword11", "")
+    var keyword2 = GlobalApplication.prefs.getString("keyword12", "")
+    var keyword3 = GlobalApplication.prefs.getString("keyword13", "")
+    var history1 = GlobalApplication.prefs.getString("history1", "")
+
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -47,14 +64,48 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.setOnTouchListener { v, event ->
+            hideKeyboard(v)
+            false
+        }
+
+        binding.keyword1.visibility = View.INVISIBLE
+        binding.keyword2.visibility = View.INVISIBLE
+        binding.keyword3.visibility = View.INVISIBLE
+
         binding.btnPhoto.setOnClickListener {
             // 갤러리에서 사진 선택을 요청
             checkPermissionAndPickImage()
         }
 
-        binding.keyword1.visibility = View.GONE
-        binding.keyword2.visibility = View.GONE
-        binding.keyword3.visibility = View.GONE
+        //임시저장 data 불러오기
+        binding.tvName.setText(name1)
+        binding.tvBrand.setText(brand1)
+        binding.tvPrice.setText(price1)
+        binding.tvKeyword.setText(keyword1)
+        binding.tvHistory.setText(history1)
+        if(keyword1.isNotEmpty()) {
+            binding.keyword1.visibility = View.VISIBLE
+            binding.keyword1.text = keyword1
+            keywordNum = 2
+        }
+        if(keyword2.isNotEmpty()) {
+            binding.keyword2.visibility = View.VISIBLE
+            binding.keyword2.text = keyword2
+            keywordNum = 3
+        }
+        if(keyword3.isNotEmpty()) {
+            binding.keyword3.visibility = View.VISIBLE
+            binding.keyword3.text = keyword3
+            keywordNum = 4
+        }
+        binding.tvHistory.setText(history1)
+
+        if(imageFile1.isNotEmpty()){
+            binding.btnPhoto.setImageURI(imageFile1.toUri())
+        }
+
+
 
         binding.tvName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -63,6 +114,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             }
             override fun afterTextChanged(s: Editable?) {
                 var name = binding.tvName.text.toString()
+                GlobalApplication.prefs.setString("name1", name)
                 true1 = name.isNotEmpty()
                 checkAndSetPreferences()
             }
@@ -75,6 +127,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             }
             override fun afterTextChanged(s: Editable?) {
                 var brand = binding.tvBrand.text.toString()
+                GlobalApplication.prefs.setString("brand1", brand)
                 true2 = brand.isNotEmpty()
                 checkAndSetPreferences()
             }
@@ -87,6 +140,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             }
             override fun afterTextChanged(s: Editable?) {
                 var price = binding.tvPrice.text.toString()
+                GlobalApplication.prefs.setString("price1", price)
                 true3 = price.isNotEmpty()
                 checkAndSetPreferences()
             }
@@ -100,8 +154,34 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             }
             override fun afterTextChanged(s: Editable?) {
                 var history = binding.tvHistory.text.toString()
+                GlobalApplication.prefs.setString("history1", history)
             }
         })
+
+        binding.addKeyword.setOnClickListener {
+            if(keywordNum == 1) {
+                binding.keyword1.visibility = View.VISIBLE
+                var tvKeyword = binding.tvKeyword.text.toString()
+                binding.keyword1.text = tvKeyword
+                GlobalApplication.prefs.setString("keyword11", tvKeyword)
+                keywordNum++
+                binding.tvKeyword.text = null
+            } else if (keywordNum == 2) {
+                binding.keyword2.visibility = View.VISIBLE
+                binding.keyword2.text = binding.tvKeyword.text.toString()
+                GlobalApplication.prefs.setString("keyword12", binding.tvKeyword.text.toString())
+                keywordNum++
+                binding.tvKeyword.text = null
+            } else if (keywordNum == 3) {
+                binding.keyword3.visibility = View.VISIBLE
+                binding.keyword3.text = binding.tvKeyword.text.toString()
+                GlobalApplication.prefs.setString("keyword13", binding.tvKeyword.text.toString())
+                keywordNum++
+                binding.tvKeyword.text = null
+            } else {
+                Toast.makeText(requireContext(), "키워드는 3개까지만 추가할 수 있습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // size spinner
         val sizeOptions = arrayOf("FREE", "XS", "S", "M", "L", "XL", "XXL")
@@ -114,13 +194,17 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
                 val selectedItem = sizeOptions[position]
                 // 선택된 항목 처리
                 var size = selectedItem
+                GlobalApplication.prefs.setString("size1", size)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // 아무 항목도 선택되지 않았을 때 처리
             }
         }
-
+        if(size1 != "") {
+            val desiredPosition = sizeOptions.indexOf(size1)
+            binding.sizeSpinner.setSelection(desiredPosition)
+        }
         // count spinner
         val countOptions = arrayOf("0회", "5회 미만", "10회 이상", "30회 이상")
         val countAdapter = ArrayAdapter(requireContext(), R.layout.rounded_spinner_dropdown_item, countOptions.toMutableList())
@@ -132,11 +216,16 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
                 val selectedItem1 = countOptions[position]
                 // 선택된 항목 처리
                 var count = selectedItem1
+                GlobalApplication.prefs.setString("count1", count)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // 아무 항목도 선택되지 않았을 때 처리
             }
+        }
+        if(count1 != "") {
+            val desiredPosition1 = countOptions.indexOf(count1)
+            binding.countSpinner.setSelection(desiredPosition1)
         }
     }
 
@@ -172,6 +261,8 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
                 uploadImage(selectedImageUri)
                 // 선택된 이미지를 btnPhoto의 이미지로 설정
                 binding.btnPhoto.setImageURI(selectedImageUri)
+                // 이미지 파일 경로를 저장
+                GlobalApplication.prefs.setString("imageFile1", selectedImageUri.toString())
             }
         }
     }
@@ -182,20 +273,6 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
 
         val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val filePart = MultipartBody.Part.createFormData("image", file.name, requestBody)
-
-        Log.d("image", "uploadImage: $filePart")
-
-        // val retrofitService = retrofit.create(RetrofitService::class.java)
-        // val call = retrofitService.uploadImage(filePart)
-        // call.enqueue(object : Callback<ApiResponse> {
-        //     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-        //         // 업로드 성공 처리
-        //     }
-        //
-        //     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-        //         // 업로드 실패 처리
-        //     }
-        // })
     }
 
     private fun getRealPathFromUri(uri: Uri): String? {
@@ -213,6 +290,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     private fun checkAndSetPreferences() {
         if (true1 && true2 && true3) {
             GlobalApplication.prefs.setString("info2", "true")
+            GlobalApplication.prefs.setString("infoStatus", "1")
         } else {
             GlobalApplication.prefs.setString("info2", "false")
         }

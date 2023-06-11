@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@drawable/bg_info_box"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,12 +63,12 @@
 
             <ImageView
                 android:id="@+id/btn_photo"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="36dp"
-                android:scaleType="fitXY"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:src="@drawable/btn_photo"
-                app:layout_constraintStart_toStartOf="parent"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,7 +150,7 @@
                 android:background="@drawable/bg_item_box"
                 android:fontFamily="@font/pretendard_regular"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="10dp"
                 android:textColor="@color/blue_text"
                 android:textSize="11sp"
@@ -179,7 +181,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="470dp"
             android:layout_marginTop="0dp"
             android:background="@drawable/bg_box3"
             android:layout_marginStart="10dp"
@@ -206,7 +208,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_item_box"
                 android:fontFamily="@font/pretendard_regular"
-                android:hint="예) 린넨 셔츠(반팔)"
+                android:hint="예) 여름 계곡, 취업 준비"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:padding="10dp"
@@ -247,7 +249,7 @@
                 android:id="@+id/keyword2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginStart="9dp"
                 android:background="@drawable/bg_category_radius"
                 android:fontFamily="@font/pretendard_regular"
                 android:paddingStart="11dp"
@@ -257,16 +259,14 @@
                 android:text="            "
                 android:textColor="@color/blue_main"
                 android:textSize="11sp"
-                android:layout_marginStart="9dp"
-                app:layout_constraintStart_toBottomOf="@+id/keyword1"
-                app:layout_constraintStart_toEndOf="@+id/keyword1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+                app:layout_constraintBottom_toBottomOf="@+id/keyword1"
+                app:layout_constraintStart_toEndOf="@+id/keyword1" />
 
             <TextView
                 android:id="@+id/keyword3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginStart="9dp"
                 android:background="@drawable/bg_category_radius"
                 android:fontFamily="@font/pretendard_regular"
                 android:paddingStart="11dp"
@@ -276,10 +276,8 @@
                 android:text="            "
                 android:textColor="@color/blue_main"
                 android:textSize="11sp"
-                android:layout_marginStart="9dp"
-                app:layout_constraintStart_toBottomOf="@+id/keyword2"
-                app:layout_constraintStart_toEndOf="@+id/keyword2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+                app:layout_constraintBottom_toBottomOf="@+id/keyword2"
+                app:layout_constraintStart_toEndOf="@+id/keyword2"/>
 
 
             <ImageView
@@ -287,10 +285,10 @@
                 android:layout_width="273dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/ic_history"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/keyword1" />
 
             <EditText
                 android:id="@+id/tv_history"
@@ -304,7 +302,7 @@
                 android:maxLines="4"
                 android:padding="10dp"
                 android:textColor="@color/black_text"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:hint="예) 제가 취업 준비할 때, 아버지가 사주셨던 정장입니다. 어느덧 카카오 개발자 1년차가 되었네요. 좋은 기운 받아가셨으면 좋겠습니다. 상태는 매우 좋아요 ㅎㅎ."
                 android:gravity="top"
                 android:textColorHint="#B7B5B5"
