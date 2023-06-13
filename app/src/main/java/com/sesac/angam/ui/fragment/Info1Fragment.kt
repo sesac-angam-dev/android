@@ -40,17 +40,17 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     var keywordNum = 1
 
     //임시저장 data가져오기
-    var name1 = GlobalApplication.prefs.getString("name1", "")
-    var imageFile1 = GlobalApplication.prefs.getString("imageFile1", "")
-    var imageUri1 = GlobalApplication.prefs.getString("imageUri1", "")
-    var brand1 = GlobalApplication.prefs.getString("brand1", "")
-    var size1 = GlobalApplication.prefs.getString("size1", "")
-    var price1 = GlobalApplication.prefs.getString("price1", "")
-    var count1 = GlobalApplication.prefs.getString("count1", "")
+    var name = GlobalApplication.prefs.getString("name1", "")
+    var imageFile = GlobalApplication.prefs.getString("imageFile1", "")
+    var imageUri = GlobalApplication.prefs.getString("imageUri1", "")
+    var brand = GlobalApplication.prefs.getString("brand1", "")
+    var size = GlobalApplication.prefs.getString("size1", "")
+    var price = GlobalApplication.prefs.getString("price1", "")
+    var countNum = GlobalApplication.prefs.getString("count1", "")
     var keyword1 = GlobalApplication.prefs.getString("keyword11", "")
     var keyword2 = GlobalApplication.prefs.getString("keyword12", "")
     var keyword3 = GlobalApplication.prefs.getString("keyword13", "")
-    var history1 = GlobalApplication.prefs.getString("history1", "")
+    var history = GlobalApplication.prefs.getString("history1", "")
 
 
     override fun getFragmentBinding(
@@ -78,11 +78,11 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
         }
 
         //임시저장 data 불러오기
-        binding.tvName.setText(name1)
-        binding.tvBrand.setText(brand1)
-        binding.tvPrice.setText(price1)
-        binding.tvKeyword.setText(keyword1)
-        binding.tvHistory.setText(history1)
+        binding.tvName.setText(name)
+        binding.tvBrand.setText(brand)
+        binding.tvPrice.setText(price)
+//        binding.tvKeyword.setText(keyword1)
+        binding.tvHistory.setText(history)
         if(keyword1.isNotEmpty()) {
             binding.keyword1.visibility = View.VISIBLE
             binding.keyword1.text = keyword1
@@ -98,10 +98,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             binding.keyword3.text = keyword3
             keywordNum = 4
         }
-        binding.tvHistory.setText(history1)
 
-        if(imageUri1.isNotEmpty()){
-            binding.btnPhoto.setImageURI(imageUri1.toUri())
+        if(imageUri.isNotEmpty()){
+            binding.btnPhoto.setImageURI(imageUri.toUri())
         }
 
         binding.tvName.addTextChangedListener(object : TextWatcher {
@@ -123,9 +122,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable?) {
-                var brand = binding.tvBrand.text.toString()
-                GlobalApplication.prefs.setString("brand1", brand)
-                true2 = brand.isNotEmpty()
+                var tvbrand = binding.tvBrand.text.toString()
+                GlobalApplication.prefs.setString("brand1", tvbrand)
+                true2 = tvbrand.isNotEmpty()
                 checkAndSetPreferences()
             }
         })
@@ -136,9 +135,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable?) {
-                var price = binding.tvPrice.text.toString()
-                GlobalApplication.prefs.setString("price1", price)
-                true3 = price.isNotEmpty()
+                var tvprice = binding.tvPrice.text.toString()
+                GlobalApplication.prefs.setString("price1", tvprice)
+                true3 = tvprice.isNotEmpty()
                 checkAndSetPreferences()
             }
         })
@@ -150,8 +149,8 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable?) {
-                var history = binding.tvHistory.text.toString()
-                GlobalApplication.prefs.setString("history1", history)
+                var tvhistory = binding.tvHistory.text.toString()
+                GlobalApplication.prefs.setString("history1", tvhistory)
             }
         })
 
@@ -190,16 +189,16 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = sizeOptions[position]
                 // 선택된 항목 처리
-                var size = selectedItem
-                GlobalApplication.prefs.setString("size1", size)
+                var tvsize = selectedItem
+                GlobalApplication.prefs.setString("size1", tvsize)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // 아무 항목도 선택되지 않았을 때 처리
             }
         }
-        if(size1 != "") {
-            val desiredPosition = sizeOptions.indexOf(size1)
+        if(size != "") {
+            val desiredPosition = sizeOptions.indexOf(size)
             binding.sizeSpinner.setSelection(desiredPosition)
         }
         // count spinner
@@ -212,16 +211,16 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem1 = countOptions[position]
                 // 선택된 항목 처리
-                var count = selectedItem1
-                GlobalApplication.prefs.setString("count1", count)
+                var tvcount = selectedItem1
+                GlobalApplication.prefs.setString("count1", tvcount)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // 아무 항목도 선택되지 않았을 때 처리
             }
         }
-        if(count1 != "") {
-            val desiredPosition1 = countOptions.indexOf(count1)
+        if(countNum != "") {
+            val desiredPosition1 = countOptions.indexOf(countNum)
             binding.countSpinner.setSelection(desiredPosition1)
         }
     }
@@ -309,6 +308,5 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             GlobalApplication.prefs.setString("info2", "false")
         }
     }
-
 
 }
