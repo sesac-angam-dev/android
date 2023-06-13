@@ -17,20 +17,4 @@ class PreferenceUtil (context: Context){
         prefs.edit().putString(key, str).apply()
     }
 
-    fun saveArrayList(key: String, arrayList: ArrayList<String>) {
-        val editor = prefs.edit()
-        editor.putStringSet(key, HashSet(arrayList))
-        editor.apply()
-    }
-
-    fun getArrayList(key: String): ArrayList<String> {
-        val savedSet = prefs.getStringSet(key, HashSet<String>())
-        return ArrayList(savedSet)
-    }
-
-    fun getSharedPreferences(): SharedPreferences {
-        return prefs
-    }
-
-
 }

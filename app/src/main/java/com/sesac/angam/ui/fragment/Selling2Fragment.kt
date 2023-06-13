@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
@@ -19,7 +20,14 @@ import com.sesac.angam.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
 import retrofit2.HttpException
+import java.io.File
 
 class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
 
@@ -175,53 +183,66 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
     suspend fun postInfo() {
         try {
             var infoStatus = GlobalApplication.prefs.getString("infoStatus", "").toInt()
-            val postList = mutableListOf<PostItem>()
-            Log.d("goSelling", "goSelling")
 
-            //infoStatus값만큼 반복
+            // 필드를 저장할 맵 생성
+            val fields = mutableMapOf<String, RequestBody>()
+            var imageParts = mutableListOf<MultipartBody.Part>()
+
+            // infoStatus값만큼 반복
             for (i in 1..infoStatus) {
+                val index = (i - 1).toString() // 인덱스를 생성
                 val name = GlobalApplication.prefs.getString("name$i", "")
-                val imageFile = GlobalApplication.prefs.getString("imageFile$i", "")
                 val brand = GlobalApplication.prefs.getString("brand$i", "")
                 val size = GlobalApplication.prefs.getString("size$i", "")
                 val price = GlobalApplication.prefs.getString("price$i", "").toInt()
-                val count = GlobalApplication.prefs.getString("count$i", "").toInt()
+                val count = GlobalApplication.prefs.getString("count$i", "")
                 val history = GlobalApplication.prefs.getString("history$i", "")
                 val keywords = mutableListOf<String>()
+                val imageFilePath = GlobalApplication.prefs.getString("imageFile$i", "")
+
+                // 필드 값들을 RequestBody로 변환하여 맵에 추가
+                fields["postList[$index].brand"] = brand.toRequestBody("text/plain".toMediaTypeOrNull())
+                fields["postList[$index].history"] = history.toRequestBody("text/plain".toMediaTypeOrNull())
+                fields["postList[$index].purchasePrice"] = price.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                fields["postList[$index].size"] = size.toRequestBody("text/plain".toMediaTypeOrNull())
+                fields["postList[$index].title"] = name.toRequestBody("text/plain".toMediaTypeOrNull())
+                fields["postList[$index].wearNum"] = count.toRequestBody("text/plain".toMediaTypeOrNull())
+
+                val keywordsArray = JSONArray()
                 for (j in 1..3) {
                     val keyword = GlobalApplication.prefs.getString("keyword$i$j", "")
                     if (keyword.isNotEmpty()) {
-                        keywords.add(keyword)
+                        keywordsArray.put(keyword)
                     }
                 }
+                fields["postList[$index].keywords"] = keywordsArray.toString().toRequestBody("application/json".toMediaTypeOrNull())
 
-                postList.add(
-                    PostItem(
-                        brand = brand,
-                        history = history,
-                        image = imageFile,
-                        keywords = keywords,
-                        purchasePrice = price,
-                        size = size,
-                        title = name,
-                        wearNum = count
+                // 이미지 파일이 존재할 경우에만 처리
+                if (imageFilePath.isNotEmpty()) {
+                    val imageFile = File(imageFilePath)
+                    val requestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+                    val imagePart = MultipartBody.Part.createFormData(
+                        "postList[$index].image",  // 키에 인덱스 추가
+                        imageFile.name,
+                        requestBody
                     )
-                )
+                    imageParts.add(imagePart)
+                }
             }
 
-            val postData = PostData(postList)
-
-            retService.infoPost("Bearer $accessToken", postData)
+            // 각 post에 대한 모든 정보가 준비되면 요청을 보냅니다.
+            retService.infoPost("Bearer $accessToken", fields, imageParts)
 
             // If we get here, then the post was a success
-            Log.d("selling 통신 성공","selling post 통신 성공, 요청 성공")
+            Log.d("selling 통신 성공", "selling post 통신 성공, 요청 성공")
             Toast.makeText(requireContext(), "Post Success", Toast.LENGTH_SHORT).show()
+            Log.d("selling post 통신 성공", "요청 성공: " + fields.toString())
 
             // Selling3으로 이동
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.main_frm, Selling3Fragment())
-//                .addToBackStack(null)
-//                .commit()
+            // parentFragmentManager.beginTransaction()
+            //    .replace(R.id.main_frm, Selling3Fragment())
+            //    .addToBackStack(null)
+            //    .commit()
 
         } catch (e: HttpException) {
             // We had a non-2XX HTTP error
@@ -231,7 +252,7 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
         } catch (e: Exception) {
             // A network error happened
             Toast.makeText(requireContext(), "Post failed", Toast.LENGTH_SHORT).show()
-            Log.d("selling post 통신 실패", "전송 실패"+ e.message)
+            Log.d("selling post 통신 실패", "전송 실패" + e.message)
         }
     }
 
