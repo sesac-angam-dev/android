@@ -13,7 +13,6 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
 import com.sesac.angam.databinding.FragmentInfo1Binding
-import com.sesac.angam.databinding.FragmentRatingBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -44,6 +42,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     //임시저장 data가져오기
     var name1 = GlobalApplication.prefs.getString("name1", "")
     var imageFile1 = GlobalApplication.prefs.getString("imageFile1", "")
+    var imageUri1 = GlobalApplication.prefs.getString("imageUri1", "")
     var brand1 = GlobalApplication.prefs.getString("brand1", "")
     var size1 = GlobalApplication.prefs.getString("size1", "")
     var price1 = GlobalApplication.prefs.getString("price1", "")
@@ -101,11 +100,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
         }
         binding.tvHistory.setText(history1)
 
-        if(imageFile1.isNotEmpty()){
-            binding.btnPhoto.setImageURI(imageFile1.toUri())
+        if(imageUri1.isNotEmpty()){
+            binding.btnPhoto.setImageURI(imageUri1.toUri())
         }
-
-
 
         binding.tvName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -230,10 +227,17 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
     }
 
     private fun checkPermissionAndPickImage() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            pickImageFromGallery()
+        val permissions = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        val permissionsToRequest = permissions.filter {
+            ContextCompat.checkSelfPermission(requireContext(), it) != PackageManager.PERMISSION_GRANTED
+        }
+        if (permissionsToRequest.isNotEmpty()) {
+            ActivityCompat.requestPermissions(requireActivity(), permissionsToRequest.toTypedArray(), REQUEST_PERMISSION)
         } else {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_PERMISSION)
+            pickImageFromGallery()
         }
     }
 
@@ -242,14 +246,21 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
         startActivityForResult(intent, REQUEST_IMAGE_PICK)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                 pickImageFromGallery()
+            } else {
+                // 권한 거부 시 사용자에게 설명하거나 앱 동작을 처리합니다.
             }
         }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -262,7 +273,7 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
                 // 선택된 이미지를 btnPhoto의 이미지로 설정
                 binding.btnPhoto.setImageURI(selectedImageUri)
                 // 이미지 파일 경로를 저장
-                GlobalApplication.prefs.setString("imageFile1", selectedImageUri.toString())
+                GlobalApplication.prefs.setString("imageUri1", selectedImageUri.toString())
             }
         }
     }
@@ -273,6 +284,9 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
 
         val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val filePart = MultipartBody.Part.createFormData("image", file.name, requestBody)
+
+        // 이미지 파일 sharedPreference에 저장
+        GlobalApplication.prefs.setString("imageFile1", file.absolutePath)
     }
 
     private fun getRealPathFromUri(uri: Uri): String? {
@@ -295,5 +309,6 @@ class Info1Fragment : BaseFragment<FragmentInfo1Binding>()  {
             GlobalApplication.prefs.setString("info2", "false")
         }
     }
+
 
 }
