@@ -239,10 +239,10 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
             Log.d("selling post 통신 성공", "요청 성공: " + fields.toString())
 
             // Selling3으로 이동
-            // parentFragmentManager.beginTransaction()
-            //    .replace(R.id.main_frm, Selling3Fragment())
-            //    .addToBackStack(null)
-            //    .commit()
+             parentFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, Selling3Fragment())
+                .addToBackStack(null)
+                .commit()
 
         } catch (e: HttpException) {
             // We had a non-2XX HTTP error
