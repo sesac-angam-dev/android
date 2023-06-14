@@ -109,9 +109,6 @@ dependencies {
     //compose Compiler
     implementation "androidx.compose.compiler:compiler:1.0.0-beta08"
 
-    //timber
-    implementation "com.jakewharton.timber:timber:4.7.1"
-
     //data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation "androidx.datastore:datastore-core:1.0.0"
@@ -121,7 +118,11 @@ dependencies {
 
     // cardview
     implementation("androidx.cardview:cardview:1.0.0")
-//
+
     //Apache Commons IO 라이브러리
     implementation 'commons-io:commons-io:2.6'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

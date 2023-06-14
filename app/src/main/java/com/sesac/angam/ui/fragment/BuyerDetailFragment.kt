@@ -6,21 +6,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
+import com.sesac.angam.databinding.FragmentBuyerDetailBinding
 
 class BuyerDetailFragment : Fragment() {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var binding: FragmentBuyerDetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_buyer_detail, container, false)
+        binding = FragmentBuyerDetailBinding.inflate(inflater, container, false)
+
+        var heart = false
+
+        binding.ivHeart.setOnClickListener {
+            if (heart) {
+                binding.ivHeart.setImageResource(R.drawable.ic_heart_off)
+                heart = false
+                Toast.makeText(context, "찜 목록에서 삭제되었습니다!", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.ivHeart.setImageResource(R.drawable.ic_heart_on)
+                heart = true
+                Toast.makeText(context, "찜 목록에 추가되었습니다!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
+
+        binding.bottomSheet.setOnClickListener {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+
+        //bottom sheet 초기화
         val bottomSheet: ConstraintLayout = view.findViewById(R.id.bottomSheet)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-
 
         bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -53,6 +83,6 @@ class BuyerDetailFragment : Fragment() {
             }
         })
 
-        return view
+        return binding.root
     }
 }

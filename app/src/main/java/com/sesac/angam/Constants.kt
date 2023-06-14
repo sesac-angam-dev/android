@@ -19,7 +19,7 @@ object Constants {
     const val VALUE_CONTENT_TYPE = "application/json"
     const val KEY_AUTHORIZATION = "Authorization"
 
-    const val OPENAI_API_KEY = "AIzaSyCINdfAgqD_f_bmZZWvAecuuvI3vc1zsVA"
+//    const val OPENAI_API_KEY = "AIzaSyCINdfAgqD_f_bmZZWvAecuuvI3vc1zsVA"
 //
 //    const val CONNECT_TIME_OUT = 15L
 //    const val READ_TIME_OUT = 15L

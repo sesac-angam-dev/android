@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.sesac.angam.GlobalApplication
 import com.sesac.angam.R
 import com.sesac.angam.databinding.ActivityMainBinding
+import com.sesac.angam.databinding.FragmentBuyerDetailBinding
 import com.sesac.angam.ui.fragment.*
 
 class MainActivity : AppCompatActivity() {
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.sellingFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, Selling2Fragment())
+                        .replace(R.id.main_frm, BuyerDetailFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
