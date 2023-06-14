@@ -13,6 +13,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
 import com.sesac.angam.databinding.FragmentBuyerDetailBinding
+import com.sesac.angam.ui.adapter.RatingRecyclerViewAdapter
+import com.sesac.angam.ui.viewmodel.RatingViewModel
 
 class BuyerDetailFragment : Fragment() {
 

@@ -5,6 +5,7 @@ package com.sesac.angam.network
 import com.sesac.angam.data.model.request.PostData
 import com.sesac.angam.data.model.request.PostPickup
 import com.sesac.angam.data.model.response.EstimateResponse
+import com.sesac.angam.data.model.response.HotResponse
 import com.sesac.angam.data.model.response.RatingResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -18,7 +19,6 @@ interface APIs {
         @Header("Authorization") accessToken: String
     ): Response<List<RatingResponse>>
 
-
     @GET("/estimated-bid/list")
     suspend fun getEstimate(
         @Header("Authorization") accessToken: String
@@ -30,12 +30,11 @@ interface APIs {
         @Body postPickup: PostPickup
     )
 
+    @GET("/home/posts/hot")
+    suspend fun getHot(
+        @Header("Authorization") accessToken: String
+    ): Response<List<HotResponse>>
 
-//    @POST("/api/restaurant/review")
-//    suspend fun reviewPost(
-//        @Header("Authorization") accessToken: String,
-//        @Body request: PostReviewRequest
-//    )
 
     @Multipart
     @POST("/posts/info")
