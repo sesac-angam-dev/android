@@ -7,6 +7,7 @@ import com.sesac.angam.data.model.request.PostPickup
 import com.sesac.angam.data.model.response.EstimateResponse
 import com.sesac.angam.data.model.response.HotResponse
 import com.sesac.angam.data.model.response.RatingResponse
+import com.sesac.angam.data.model.response.RecommendResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -34,6 +35,11 @@ interface APIs {
     suspend fun getHot(
         @Header("Authorization") accessToken: String
     ): Response<List<HotResponse>>
+
+    @GET("/home/posts/recommended")
+    suspend fun getRecommend(
+        @Header("Authorization") accessToken: String
+    ): Response<List<RecommendResponse>>
 
 
     @Multipart

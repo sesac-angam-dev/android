@@ -6,17 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sesac.angam.base.BaseFragment
 import com.sesac.angam.databinding.FragmentHomeBinding
 import com.sesac.angam.ui.adapter.HotRecyclerViewAdapter
+import com.sesac.angam.ui.adapter.RecommendRecyclerViewAdapter
 import com.sesac.angam.ui.viewmodel.HotViewModel
+import com.sesac.angam.ui.viewmodel.RecommendViewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>()  {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var hotViewModel: HotViewModel
     private lateinit var hotRecyclerViewAdapter: HotRecyclerViewAdapter
+    private lateinit var recommendViewModel: RecommendViewModel
+    private lateinit var recommendRecyclerViewAdapter: RecommendRecyclerViewAdapter
     private var id = 0
 
     override fun getFragmentBinding(
@@ -29,6 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Hot 게시물
         // ViewModel 초기화
         hotViewModel = ViewModelProvider(this).get(HotViewModel::class.java)
 
@@ -38,18 +44,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>()  {
         }
 
         // recyclerview 구성
-        val recyclerView: RecyclerView = binding.hotRecyclerView
-        recyclerView.adapter = hotRecyclerViewAdapter
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager
+        val hotRecyclerView: RecyclerView = binding.hotRecyclerView
+        hotRecyclerView.adapter = hotRecyclerViewAdapter
+        val hotLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        hotRecyclerView.layoutManager = hotLayoutManager
 
         // ViewModel과 RecyclerView 어댑터 연결
         hotViewModel.tasks.observe(viewLifecycleOwner, Observer { tasks ->
             hotRecyclerViewAdapter.updateTasks(tasks)
         })
 
+        // Recommend 게시물
+        // ViewModel 초기화
+        recommendViewModel = ViewModelProvider(this).get(RecommendViewModel::class.java)
 
+        recommendRecyclerViewAdapter = RecommendRecyclerViewAdapter { task ->
+            //click event 처리
+            id = task.id
+        }
 
+        // recyclerview 구성
+        val recommendRecyclerView: RecyclerView = binding.recommendRecyclerView
+        recommendRecyclerView.adapter = recommendRecyclerViewAdapter
+        val recommendLayoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        recommendRecyclerView.layoutManager = recommendLayoutManager
+
+        // ViewModel과 RecyclerView 어댑터 연결
+        recommendViewModel.tasks.observe(viewLifecycleOwner, Observer { tasks ->
+            recommendRecyclerViewAdapter.updateTasks(tasks)
+        })
 
     }
 }
