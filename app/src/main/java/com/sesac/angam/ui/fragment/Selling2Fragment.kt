@@ -39,10 +39,10 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
     private val info4LiveData = MutableLiveData<Boolean>()
     private val info5LiveData = MutableLiveData<Boolean>()
 
-    private var info2 = "false"
-    private var info3 = "false"
-    private var info4 = "false"
-    private var info5 = "false"
+    private var info2 = GlobalApplication.prefs.getString("info2", "false")
+    private var info3 = GlobalApplication.prefs.getString("info3", "false")
+    private var info4 = GlobalApplication.prefs.getString("info4", "false")
+    private var info5 = GlobalApplication.prefs.getString("info5", "false")
 
     private val prefsListener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
         when (key) {

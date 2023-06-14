@@ -1,13 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    tools:context=".ui.fragment.RatingFragment">
+        tools:context=".ui.fragment.RatingFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:fontFamily="@font/pretendard_bold"
+                android:layout_marginStart="@dimen/size_30"
+                android:text="예상 구매가 입력하고\n하루 최대 500p 받아가기"
+                android:textColor="@color/black_title"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_30"
+                android:layout_marginTop="@dimen/size_35"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:listitem="@layout/rating_item"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        bottom sheet-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rating_bottomSheet"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:background="@drawable/background_bottom_sheet"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:behavior_peekHeight="120dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/layout"
+                    android:layout_width="76dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_bottom_sheet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="@dimen/size_50"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:text="평가하기"
+                    android:textColor="@color/black_text"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bottom_tv_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_30"
+                    android:layout_marginTop="@dimen/size_7"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=""
+                    android:textColor="@color/blue_main"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text" />
+
+                <TextView
+                    android:id="@+id/bottom_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_6"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=""
+                    android:textColor="@color/black_text"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/bottom_tv_brand"
+                    app:layout_constraintStart_toEndOf="@+id/bottom_tv_brand"
+                    app:layout_constraintTop_toTopOf="@+id/bottom_tv_brand" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="298dp"
+                    android:layout_height="@dimen/size_38"
+                    android:layout_marginStart="@dimen/size_30"
+                    android:layout_marginTop="@dimen/size_23"
+                    android:layout_marginEnd="@dimen/size_30"
+                    android:background="#F5F5F5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bottom_tv_brand">
+
+                    <EditText
+                        android:id="@+id/tv_bidding_price"
+                        android:layout_width="@dimen/size_200"
+                        android:layout_height="wrap_content"
+                        android:background="#F5F5F5"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:gravity="right"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textColor="@color/black_text"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                        app:layout_constraintEnd_toStartOf="@+id/textView4"
+                        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_9"
+                        android:text="원"
+                        android:textColor="@color/black_text"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/btn_rating"
+                    android:layout_width="298dp"
+                    android:layout_height="@dimen/size_38"
+                    android:src="@drawable/btn_rating"
+                    android:layout_marginTop="@dimen/size_18"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="565dp"
+        android:paddingEnd="@dimen/size_15">
+
+            <ImageView
+                android:id="@+id/iv_clothes_image"
+                android:layout_width="match_parent"
+                android:layout_height="238dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iv_sample_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_heart"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:src="@drawable/ic_heart_off"
+                android:layout_marginEnd="@dimen/size_5"
+                android:layout_marginBottom="@dimen/size_5"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_clothes_image"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <TextView
+            android:id="@+id/keyword1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_category_radius"
+            android:fontFamily="@font/pretendard_regular"
+            android:paddingStart="11dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="11dp"
+            android:paddingBottom="4dp"
+            android:text="            "
+            android:textColor="@color/blue_main"
+            android:textSize="11sp"
+            android:layout_marginTop="@dimen/size_28"
+            android:layout_marginStart="@dimen/size_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_clothes_image" />
+
+        <TextView
+            android:id="@+id/keyword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:background="@drawable/bg_category_radius"
+            android:fontFamily="@font/pretendard_regular"
+            android:paddingStart="11dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="11dp"
+            android:paddingBottom="4dp"
+            android:text="            "
+            android:textColor="@color/blue_main"
+            android:textSize="11sp"
+            android:layout_marginStart="@dimen/size_9"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword1"
+            app:layout_constraintStart_toEndOf="@+id/keyword1" />
+
+        <TextView
+            android:id="@+id/keyword3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_19"
+            android:background="@drawable/bg_category_radius"
+            android:fontFamily="@font/pretendard_regular"
+            android:paddingStart="11dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="11dp"
+            android:paddingBottom="4dp"
+            android:text="            "
+            android:textColor="@color/blue_main"
+            android:textSize="11sp"
+            android:layout_marginStart="@dimen/size_9"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword2"
+            app:layout_constraintStart_toEndOf="@+id/keyword2" />
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="[브랜드]"
+            android:textColor="@color/blue_main"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginStart="@dimen/size_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/keyword1" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:text="의류 이름"
+                android:textColor="@color/black_text"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/size_6"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_brand"
+                app:layout_constraintStart_toEndOf="@+id/tv_brand"
+                app:layout_constraintTop_toTopOf="@+id/tv_brand" />
+
+        <TextView
+            android:id="@+id/tv_history"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginStart="@dimen/size_13"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginEnd="@dimen/size_19"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="~~~~~~~~"
+            android:textColor="@color/black_text"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brand" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
