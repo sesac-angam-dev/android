@@ -10,5 +10,5 @@
         android:layout_weight="1"
         android:layout_marginTop="@dimen/size_15"
         android:layout_marginBottom="@dimen/size_15"
-        android:src="@drawable/bg_no_1" />
+        android:src="@drawable/bg_no_2" />
 </LinearLayout>

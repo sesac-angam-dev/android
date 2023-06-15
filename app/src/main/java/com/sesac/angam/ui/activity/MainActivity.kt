@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        GlobalApplication.prefs.setString("userPoint", "150000")
         GlobalApplication.prefs.setString("info2", "false")
         GlobalApplication.prefs.setString("info3", "false")
         GlobalApplication.prefs.setString("info4", "false")
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frm, RatingFragment())
+            .replace(R.id.main_frm, HomeFragment())
             .commitAllowingStateLoss()
 
         binding.mainBnv.setOnItemSelectedListener{ item ->
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.sellingFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, Selling2Fragment())
+                        .replace(R.id.main_frm, Selling1Fragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }

@@ -49,6 +49,12 @@ interface APIs {
         @Path("postId") postId: Long
     ): Response<List<BidListResponse>>
 
+    @GET("/mypage/posts/selling")
+    suspend fun getSelling(
+        @Header("Authorization") accessToken: String,
+    ): Response<List<SellingResponse>>
+
+
 
 
     @Multipart
