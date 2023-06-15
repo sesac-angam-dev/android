@@ -68,7 +68,7 @@ class SellingFragment : BaseFragment<FragmentSellingBinding>()  {
         // 알림 생성
         val contentView = RemoteViews(requireContext().packageName, R.layout.custom_notification_layout)
 
-        val builder = NotificationCompat.Builder(requireContext(), "channel_id")
+        val builder = NotificationCompat.Builder(requireContext(), "channel_id11")
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle("Notification Title")
             .setContentText("Notification Text")

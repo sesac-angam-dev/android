@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.sellingFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, Selling1Fragment())
+                        .replace(R.id.main_frm, Selling2Fragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
