@@ -208,14 +208,19 @@ class Selling2Fragment : BaseFragment<FragmentSelling2Binding>()  {
                 fields["postList[$index].title"] = name.toRequestBody("text/plain".toMediaTypeOrNull())
                 fields["postList[$index].wearNum"] = count.toRequestBody("text/plain".toMediaTypeOrNull())
 
-                val keywordsArray = JSONArray()
+                val keywordsList = mutableListOf<String>()
                 for (j in 1..3) {
                     val keyword = GlobalApplication.prefs.getString("keyword$i$j", "")
                     if (keyword.isNotEmpty()) {
-                        keywordsArray.put(keyword)
+                        keywordsList.add(keyword)
                     }
                 }
-                fields["postList[$index].keywords"] = keywordsArray.toString().toRequestBody("application/json".toMediaTypeOrNull())
+
+                // 각 키워드를 별도의 필드로 추가
+                for ((keywordIndex, keyword) in keywordsList.withIndex()) {
+                    val keywordRequestBody = keyword.toRequestBody("text/plain".toMediaTypeOrNull())
+                    fields["postList[$index].keywords[$keywordIndex]"] = keywordRequestBody
+                }
 
                 // 이미지 파일이 존재할 경우에만 처리
                 if (imageFilePath.isNotEmpty()) {

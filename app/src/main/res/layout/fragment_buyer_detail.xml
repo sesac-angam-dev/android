@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="진우롱티"
+                android:text=""
                 android:textColor="@color/black_text"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView1"
@@ -169,7 +169,7 @@
                 android:layout_marginStart="@dimen/size_20"
                 android:layout_marginEnd="@dimen/size_20"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="~~~~~~~~"
+                android:text=""
                 android:textColor="@color/black_text"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/tv_brand"
@@ -179,13 +179,13 @@
                 android:id="@+id/layout2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
-                android:layout_marginTop="258dp"
                 android:layout_marginStart="@dimen/size_20"
                 android:layout_marginEnd="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_50"
                 android:background="@color/gray_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout1"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_history" />
 
             <TextView
                 android:id="@+id/text2"
@@ -287,11 +287,11 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
-                android:paddingBottom="70dp"
+                android:paddingBottom="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -304,11 +304,11 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_100"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerview" />
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--        bottom sheet-->
     </ScrollView>
+
+        <!--        bottom sheet-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomSheet"
             android:layout_width="match_parent"
@@ -337,7 +337,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="@dimen/size_50"
                 android:fontFamily="@font/pretendard_semibold"
-                android:text="평가하기"
+                android:text="입찰하기"
                 android:textColor="@color/black_text"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -348,23 +348,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_7"
-                android:layout_marginStart="@dimen/size_30"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="[브랜드]"
-                android:textColor="@color/blue_main"
+                android:text="사용 가능 포인트"
+                android:textColor="#768DC0"
                 android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text" />
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
 
             <TextView
                 android:id="@+id/bottom_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="의류 이름"
-                android:textColor="@color/black_text"
+                android:text="원"
+                android:textColor="#768DC0"
                 android:textSize="13sp"
-                android:layout_marginStart="@dimen/size_6"
+                android:layout_marginStart="@dimen/size_13"
                 app:layout_constraintBottom_toBottomOf="@+id/bottom_tv_brand"
                 app:layout_constraintStart_toEndOf="@+id/bottom_tv_brand"
                 app:layout_constraintTop_toTopOf="@+id/bottom_tv_brand" />
@@ -374,29 +373,31 @@
                 android:layout_width="298dp"
                 android:layout_height="@dimen/size_38"
                 android:layout_marginStart="@dimen/size_30"
-                android:layout_marginTop="@dimen/size_23"
                 android:layout_marginEnd="@dimen/size_30"
+                android:layout_marginTop="@dimen/size_15"
                 android:background="#F5F5F5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bottom_tv_brand">
+                app:layout_constraintTop_toBottomOf="@+id/text">
 
                 <EditText
                     android:id="@+id/tv_bidding_price"
                     android:layout_width="@dimen/size_200"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="#F5F5F5"
                     android:fontFamily="@font/pretendard_regular"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:padding="10dp"
+                    android:gravity="right"
+                    android:textSize="13sp"
                     android:textColor="@color/black_text"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView4"
+                    app:layout_constraintEnd_toStartOf="@+id/point"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_9"
@@ -409,13 +410,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
+                android:id="@+id/btn_real_bidding"
                 android:layout_width="298dp"
                 android:layout_height="@dimen/size_38"
-                android:src="@drawable/btn_bidding"
-                android:layout_marginTop="@dimen/size_18"
+                android:layout_marginTop="@dimen/size_20"
+                android:src="@drawable/btn_real_bidding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+                app:layout_constraintTop_toBottomOf="@+id/bottom_tv_brand" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

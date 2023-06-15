@@ -62,16 +62,6 @@ class Selling3Fragment : BaseFragment<FragmentSelling3Binding>()  {
 
         }
 
-        binding.btnGoSelling3.setOnClickListener {
-            // postIdList를 서버에 전송합니다.
-            sendPostIdListToServer()
-            Toast.makeText(requireContext(), "수거 요청이 신청되었습니다.", Toast.LENGTH_SHORT).show()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main_frm, Selling4Fragment())
-                .addToBackStack(null)
-                .commit()
-        }
-
         // recyclerview 구성
         val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.adapter = selling3RecyclerViewAdapter
@@ -83,6 +73,17 @@ class Selling3Fragment : BaseFragment<FragmentSelling3Binding>()  {
             selling3RecyclerViewAdapter.updateTasks(tasks)
         })
 
+
+        // 수거 신청
+        binding.btnGoSelling3.setOnClickListener {
+            // postIdList를 서버에 전송합니다.
+            sendPostIdListToServer()
+            Toast.makeText(requireContext(), "수거 요청이 신청되었습니다.", Toast.LENGTH_SHORT).show()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, Selling4Fragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun sendPostIdListToServer() {

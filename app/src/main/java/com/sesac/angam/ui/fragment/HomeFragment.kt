@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sesac.angam.GlobalApplication
+import com.sesac.angam.R
 import com.sesac.angam.base.BaseFragment
 import com.sesac.angam.databinding.FragmentHomeBinding
 import com.sesac.angam.ui.adapter.HotRecyclerViewAdapter
@@ -34,13 +36,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvPoint.text = GlobalApplication.prefs.getString("userPoint", "") + "원"
         // Hot 게시물
         // ViewModel 초기화
         hotViewModel = ViewModelProvider(this).get(HotViewModel::class.java)
 
         hotRecyclerViewAdapter = HotRecyclerViewAdapter { task ->
             //click event 처리
-            id = task.id
+            val taskId = task.id.toInt()
+            if (taskId != null) {
+                id = taskId
+                GlobalApplication.prefs.setString("postId", id.toString())
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_frm, BuyerDetailFragment())
+                    .addToBackStack(null)
+                    .commit()
+            } else {
+                // Handle the case where the id is not a valid integer
+                // For example, show an error message or perform a different action
+            }
         }
 
         // recyclerview 구성
@@ -61,6 +75,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         recommendRecyclerViewAdapter = RecommendRecyclerViewAdapter { task ->
             //click event 처리
             id = task.id
+            GlobalApplication.prefs.setString("postId", id.toString())
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, BuyerDetailFragment())
+                .addToBackStack(null)
+                .commit()
+
         }
 
         // recyclerview 구성

@@ -2,12 +2,8 @@ package com.sesac.angam.network
 
 
 
-import com.sesac.angam.data.model.request.PostData
 import com.sesac.angam.data.model.request.PostPickup
-import com.sesac.angam.data.model.response.EstimateResponse
-import com.sesac.angam.data.model.response.HotResponse
-import com.sesac.angam.data.model.response.RatingResponse
-import com.sesac.angam.data.model.response.RecommendResponse
+import com.sesac.angam.data.model.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -40,6 +36,19 @@ interface APIs {
     suspend fun getRecommend(
         @Header("Authorization") accessToken: String
     ): Response<List<RecommendResponse>>
+
+    @GET("/bid/post/{postId}")
+    suspend fun getDetail(
+        @Header("Authorization") accessToken: String,
+        @Path("postId") postId: Long
+    ): Response<DetailResponse>
+
+    @GET("/bid/post/{postId}/bid-list")
+    suspend fun getBidList(
+        @Header("Authorization") accessToken: String,
+        @Path("postId") postId: Long
+    ): Response<List<BidListResponse>>
+
 
 
     @Multipart

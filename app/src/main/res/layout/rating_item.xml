@@ -117,7 +117,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginEnd="@dimen/size_19"
             android:fontFamily="@font/pretendard_regular"
-            android:text="~~~~~~~~"
+            android:text=""
             android:textColor="@color/black_text"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"

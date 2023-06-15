@@ -55,6 +55,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_bidder_name" />
 
+        <ImageView
+            android:id="@+id/iv_sell"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_18"
+            android:src="@drawable/btn_sell"
+            android:layout_marginEnd="@dimen/size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_bidder_price"
+            app:layout_constraintEnd_toStartOf="@+id/tv_bidder_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_bidder_price" />
 
 
 
